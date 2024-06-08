@@ -3,6 +3,8 @@ module string_tb();
   string s1 = "An Apple A Day";
   string s2 = "Keeps doctor away";
   string s3 = "an apple a day";
+  string s4 = "blue";
+  string s5 = "Blue";
   
   initial begin
     
@@ -29,8 +31,11 @@ module string_tb();
     $display("s1.tolower() = %s", s1.tolower());
     
     //compare and icompare
-    $display("compare s1 and s3 = %0d", s1.compare(s3));
-    $display("compare s1 and s3 = %0d", s1.icompare(s3));
+    $display("compare s4 and s5 = %0d", s4.compare(s5));
+    $display("compare s4 and s4 = %0d", s4.compare(s4));
+    
+    $display("icompare s4 and s5 = %0d", s4.icompare(s5));
+    $display("icompare s4 and s4 = %0d", s4.icompare(s4));    
     
     //substring
     $display("s1.substr(0,2) = %s", s1.substr(0,2));
