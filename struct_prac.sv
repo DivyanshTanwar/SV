@@ -18,13 +18,14 @@ module tb_struct();
     stream branch;
   } student;
   
-  student s_arr[3];
+  student s_arr[4];
   
   initial begin
     
     s_arr[0] = fill_student_details(s_arr[0], "alok", "EE12345", 98, "morris road", "MP", "India", 110029, 2021, EE);
     s_arr[1] = fill_student_details(s_arr[1], "ayush", "ECE12345", 99, "lorris broad", "Delhi", "India", 110030, 2020, ECE);
     s_arr[2] = fill_student_details(s_arr[2], "sahil", "MECH12345", 100, "torris road", "kolkata", "India", 110031, 2019, MECH);    
+    s_arr[3] = fill_student_details(s_arr[2], "sahil", "MECH12345", 100, "torris road", "kolkata", "India", 110031, 2019, MECH); 
     
 //     print_student_details(alok);
 //     print_student_details(ayush);
@@ -32,6 +33,8 @@ module tb_struct();
 
     for(int i = 0; i< 3; i = i + 1) 
       print_student_details(s_arr[i]);
+    
+    
     
   end
   
@@ -70,6 +73,37 @@ module tb_struct();
     $display("Year: %0d", s.year);
     $display("Branch: %s", s.branch.name());
     
+    //Using User defined compare function for students
+    
+    $display("Comparing the Students s_arr[2] and _arr[3]: %0s", 				compare_students(s_arr[2],s_arr[3]) ? "matched" : "not matched");
+    
+    $display("Comparing the Students s_arr[1] and _arr[3]: %0s", 				compare_students(s_arr[1],s_arr[3]) ? "matched" : "not matched");
+
+    
   endtask
+  
+  
+  function reg compare_students(student s1, student s2);
+  
+    if(
+      	s1.name == s2.name &&
+    	s1.roll_no == s2.roll_no &&
+    	s1.add.house_no == s2.add.house_no &&
+    	s1.add.street == s2.add.street &&
+    	s1.add.state == s2.add.state &&
+    	s1.add.country == s2.add.country &&
+    	s1.add.pincode == s2.add.pincode &&
+    	s1.year == s2.year &&
+       	s1.branch == s2.branch 
+      
+    ) begin
+      
+      return 1;
+      
+    end
+    
+    else return 0;
+    
+  endfunction
   
 endmodule
