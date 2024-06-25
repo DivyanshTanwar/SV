@@ -14,6 +14,9 @@ class ethernet;
     A : coverpoint SA {
       ignore_bins ignore_vals = {0,255};
       ignore_bins invalid_trans = ([0:254] => 255),([1:255] => 0);
+      bins trans[] = (1=>2=>3),(5=> 4 => 65);
+      bins trans1[] = (4[*2:4]); 
+      bins trans2 = (2=>5[->3]=>7);
       bins low = {[0:64]};
       bins mid = {[65:128]};
       bins high = {[129:255]};
